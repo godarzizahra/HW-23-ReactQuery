@@ -1,18 +1,23 @@
 import axios from "axios";
 import { API_USER } from "../constants/baseUrl-user";
-import type { Usertype } from "../types/usertype";
+import type { NewUser, Usertype } from "../types/usertype";
 
 export async function getUsers() {
 	const res = await axios.get(API_USER);
 	return res.data;
 }
 
-export async function addUsers(user: Usertype) {
+export async function addUsers(user: NewUser) {
 	const res = await axios.post(API_USER, user);
 	return res.data;
 }
 
 export async function deleteUsers(id: string) {
 	const res = await axios.delete(`${API_USER}/${id} `);
+	return res.data;
+}
+
+export async function putUsers(data: Usertype) {
+	const res = await axios.put(`${API_USER}/${data.id}`, data);
 	return res.data;
 }

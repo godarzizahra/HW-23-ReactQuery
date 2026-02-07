@@ -3,11 +3,15 @@ import useDeleteUser from "../../hooks/usedelete";
 import useUsers from "../../hooks/useUsers";
 
 import AddUser from "./add-user";
+import EditUser from "./edit-user";
+import type { Usertype } from "../../types/usertype";
 
 export default function UserList() {
 	const [isopen, setIsOpen] = useState(false);
 	const { data, isLoading, error } = useUsers();
 	const { mutate } = useDeleteUser();
+	const [isEditOpen, setIsEditOpen] = useState(false);
+	const [selectedUser, setSelectedUser] = useState<Usertype | null>(null);
 	const handleDelete = (id: string) => {
 		mutate(id);
 	};
@@ -82,9 +86,24 @@ export default function UserList() {
 							<td className="px-4 py-3 text-sm text-gray-800">{user.id}</td>
 							<td className="px-4 py-3 text-sm text-gray-800">{user.name}</td>
 							<td className="px-4 py-3 text-sm text-gray-600">{user.email}</td>
-							<button onClick={() => handleDelete(user.id)} className="pt-2">
+							<button onClick={() => handleDelete(user.id)} className="pt-3">
 								🗑️
 							</button>
+							<button
+								onClick={() => {
+									setIsEditOpen(true);
+									setSelectedUser(user);
+								}}
+								className="pt-3"
+							>
+								✍️
+							</button>
+							{isEditOpen && selectedUser && (
+								<EditUser
+									user={selectedUser}
+									onClose={() => setIsEditOpen(false)}
+								/>
+							)}
 						</tr>
 					))}
 				</tbody>
