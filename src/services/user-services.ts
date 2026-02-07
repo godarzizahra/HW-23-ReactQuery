@@ -11,3 +11,8 @@ export async function addUsers(user: Usertype) {
 	const res = await axios.post(API_USER, user);
 	return res.data;
 }
+
+export async function deleteUsers(id: string) {
+	const res = await axios.delete(`${API_USER}/${id} `);
+	return res.data;
+}
