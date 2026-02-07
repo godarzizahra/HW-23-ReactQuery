@@ -1,6 +1,6 @@
 import useUsers from "../../hooks/useUsers";
 
-export default function Users() {
+export default function UserList() {
 	const { data, isLoading, error } = useUsers();
 	if (isLoading) {
 		return (
