@@ -1,6 +1,9 @@
+import { useState } from "react";
 import useUsers from "../../hooks/useUsers";
+import AddUser from "./add-user";
 
 export default function UserList() {
+	const [isopen, setIsOpen] = useState(false);
 	const { data, isLoading, error } = useUsers();
 	if (isLoading) {
 		return (
@@ -27,7 +30,7 @@ export default function UserList() {
 	return (
 		<div className="w-full p-15 flex flex-col gap-3">
 			<button
-				// onClick={}
+				onClick={() => setIsOpen(true)}
 				className="
   bg-green-500 
   hover:bg-green-600 
@@ -49,6 +52,7 @@ export default function UserList() {
 			>
 				+
 			</button>
+			{isopen && <AddUser onClose={() => setIsOpen(false)} />}
 			<table className="min-w-full border border-gray-200 rounded-lg overflow-hidden">
 				<thead className="bg-gray-100">
 					<tr>
