@@ -2,9 +2,9 @@ import { useState } from "react";
 import useDeleteUser from "../../hooks/usedelete";
 import useUsers from "../../hooks/useUsers";
 
+import type { Usertype } from "../../types/usertype";
 import AddUser from "./add-user";
 import EditUser from "./edit-user";
-import type { Usertype } from "../../types/usertype";
 
 export default function UserList() {
 	const [isopen, setIsOpen] = useState(false);
@@ -29,13 +29,13 @@ export default function UserList() {
 			</div>
 		);
 	}
-	if (!data || data.length === 0) {
-		return (
-			<div className="flex justify-center items-center h-64 text-gray-400 text-lg font-medium">
-				NO Users found
-			</div>
-		);
-	}
+	// if (!data || data.length === 0) {
+	// 	return (
+	// 		<div className="flex justify-center items-center h-64 text-gray-400 text-lg font-medium">
+	// 			NO Users found
+	// 		</div>
+	// 	);
+	// }
 
 	return (
 		<div className="w-full px-15 py-5 flex flex-col gap-3">
